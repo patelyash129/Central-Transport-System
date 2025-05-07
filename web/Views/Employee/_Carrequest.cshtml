@@ -1,0 +1,160 @@
+﻿@model Models2.DB.Request
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Request Form - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+  
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <!--<h4 class="card-title mb-0">Request Form</h4>-->
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Request Information</h4>
+                    @using (Html.BeginForm("Handle", "Employee", FormMethod.Post, new { id = "requestForm" }))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.SingleOrReturn)
+                            @Html.TextBoxFor(m => m.SingleOrReturn, new { @class = "form-control", id = "SingleOrReturn" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Destination)
+                            @Html.TextBoxFor(m => m.Destination, new { @class = "form-control", id = "Destination" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Date)
+                            <input type="date" class="form-control" id="datepicker">
+
+
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DestinationCity)
+                            @Html.TextBoxFor(m => m.DestinationCity, new { @class = "form-control", id = "DestinationCity" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.DestinationState)
+                            @Html.TextBoxFor(m => m.DestinationState, new { @class = "form-control", id = "DestinationState" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NumberOfDays)
+                            @Html.TextBoxFor(m => m.NumberOfDays, new { @class = "form-control", id = "NumberOfDays" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Source)
+                            @Html.TextBoxFor(m => m.Source, new { @class = "form-control", id = "Source" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.SourceCity)
+                            @Html.TextBoxFor(m => m.SourceCity, new { @class = "form-control", id = "SourceCity" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.SourceState)
+                            @Html.TextBoxFor(m => m.SourceState, new { @class = "form-control", id = "SourceState" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Purpose)
+                            @Html.TextBoxFor(m => m.Purpose, new { @class = "form-control", id = "Purpose" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.StartTime)
+                            <input type="time" class="form-control" id="StartTime">
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.EndTime)
+                            <input type="time" class="form-control" id="EndTime">
+
+                        </div>
+                        
+                        <button type="submit" id="submitButton" class="btn btn-primary">Submit</button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="~/Content/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS for form submission -->
+    <script>
+        $(document).ready(function () {
+            function formatDate(date) {
+                const parsedDate = new Date(date);
+                const day = ('0' + parsedDate.getDate()).slice(-2); // Add leading zero if needed
+                const month = ('0' + (parsedDate.getMonth() + 1)).slice(-2); 
+                const year = parsedDate.getFullYear();
+                return `${day}/${month}/${year}`;
+            }
+
+
+         //   $('#submitButton').click(function (event) {
+                $('#submitButton').on('click', function (event) {
+                    event.preventDefault();
+                    var $btn = $(this); // Reference to the button
+                    if ($btn.prop('disabled')) {
+                        return; // Exit if the button is already disabled
+                    }
+
+                    $btn.prop('disabled', true); // Disable the button to prevent further clicks
+
+                var formData = {
+                    SingleOrReturn: $('#SingleOrReturn').val(),
+                    Destination: $('#Destination').val(),
+                    Date: formatDate($("#datepicker").val()),
+                    DestinationCity: $('#DestinationCity').val(),
+                    DestinationState: $('#DestinationState').val(),
+                    NumberOfDays: $('#NumberOfDays').val(),
+                    Source: $('#Source').val(),
+                    SourceCity: $('#SourceCity').val(),
+                    SourceState: $('#SourceState').val(),
+                    Purpose: $('#Purpose').val(),
+                    StartTime: $('#StartTime').val(),
+                    EndTime: $('#EndTime').val(),
+                    Status: "Pending"
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Employee/Handle', // Ensure this URL is correct
+                    contentType: 'application/json',
+                    data: JSON.stringify({ Data: JSON.stringify(formData) }), // Ensure correct formatting
+                    success: function (response) {
+                        alert('Request processed successfully!');
+                        OpenForm('/Employee/Dashboard', 'Dashboard'); // Update UI or redirect
+                    },
+                    error: function (xhr, status, error) {
+                        alert('Error submitting form: ' + xhr.responseText);
+                    },
+                   
+                });
+            });
+        });
+    </script>
+
+
+</body>
+</html>

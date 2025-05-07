@@ -1,0 +1,154 @@
+﻿@model Models2.DB.TruckRequest
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Request Form - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <!--<h4 class="card-title mb-0">Truck Request Form</h4>-->
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Request Information</h4>
+                    @using (Html.BeginForm("#", "#", FormMethod.Post, new { id = "truckRequestForm" }))
+                    {
+                        <div class="row">
+                            <div class="col-xl-6">
+                                
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Venue, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Venue, new { @class = "form-control", id = "venue" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", id = "PhoneNumber" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Purpose, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Purpose, new { @class = "form-control", id = "Purpose" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Date, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        <input type="date" class="form-control" id="Date">
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Time, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        <input type="time" class="form-control" id="Time">
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.RequestFor, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.RequestFor, new { @class = "form-control", id = "RequestFor" })
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" id="submitButton" class="btn btn-primary">Submit Truck Request</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function formatDate(date) {
+                const parsedDate = new Date(date);
+                const day = ('0' + parsedDate.getDate()).slice(-2); // Add leading zero if needed
+                const month = ('0' + (parsedDate.getMonth() + 1)).slice(-2);
+                const year = parsedDate.getFullYear();
+                return `${day}/${month}/${year}`;
+            }
+   // $('#submitButton').click(function (event) {
+        $('#submitButton').on('click', function (event) {
+            event.preventDefault();
+            var $btn = $(this); // Reference to the button
+            if ($btn.prop('disabled')) {
+                return; // Exit if the button is already disabled
+            }
+
+            $btn.prop('disabled', true); // Disable the button to prevent further clicks
+
+        var formData = {
+            EmployeeId: 0,
+            PhoneNumber: parseInt($('#PhoneNumber').val()), 
+            Venue: $('#venue').val(),
+            Purpose: $('#Purpose').val(),
+            Date: formatDate($('#Date').val()),
+            Time: $('#Time').val(),
+            RequestFor: $('#RequestFor').val(),
+            Status: "Pending"
+        };
+
+
+        // Optional: Log formData object for debugging
+        console.log(formData);
+
+    // Add more fields as needed
+    
+
+    // AJAX POST request
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ProcessTruckRequest", "Employee")', // URL to controller action
+            data: ({ Data: JSON.stringify(formData) }), // Ensure correct formatting
+    success: function (response) {
+        // Handle success response if needed
+        alert("Successfully request sent");
+        OpenForm('/Employee/Dashboard', 'Dashboard'); // Update UI or redirect
+
+    console.log('Form submitted successfully.');
+    // You can update UI or perform other actions here
+    },
+    error: function (xhr, status, error) {
+        // Handle error if any
+        alert(status);
+    console.error('Error submitting form:', error);
+    }
+    });
+    });
+    });
+    </script>
+</body>
+
+</html>

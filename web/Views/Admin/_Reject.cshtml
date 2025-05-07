@@ -1,0 +1,101 @@
+﻿<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/material.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Chart CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/morris/morris.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- Custom JS -->
+    <script src="~/Content/assets/js/app.js"></script>
+    <script src="~/Scripts/Partial.js"></script>
+
+    <!-- jQuery -->
+    <script src="~/Content/assets/js/jquery-3.6.0.min.js"></script>
+
+</head>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title mb-0">Rejection Form</h4>
+            </div>
+            <div class="card-body">
+                <form action="#">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>ReJection Reason</label>
+                                <textarea rows="5" id="reason" class="form-control"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                   
+                    <div class="text-end">
+                        <button type="button" id="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+    //    $("#submit").click(function (event) {
+            $('#submit').on('click', function (event) {
+                event.preventDefault();
+                var $btn = $(this); // Reference to the button
+                if ($btn.prop('disabled')) {
+                    return; // Exit if the button is already disabled
+                }
+
+                $btn.prop('disabled', true); // Disable the button to prevent further clicks
+
+            // Your onclick event code here
+            var form =$("#reason").val();            // Add your logic for rejecting here
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Rejection", "Admin")', // Correctly resolve the URL
+                data: ({ data: form }),
+                success: function (response) {
+                    alert('Vehicle not alloted');
+                    // Optionally disable the button to prevent re-submission
+                    $(this).prop('disabled', true);
+                OpenFormGet('/Admin/AllRequest', 'AllRequest'); // Update UI or redirect
+
+                },
+                error: function (xhr, status, error) {
+                    alert('Error: ' + error);
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,140 @@
+﻿
+@model Models2.Employee.Department
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Add Department - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/material.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- Custom JS -->
+    <script src="~/Content/assets/js/app.js"></script>
+    <script src="~/Scripts/Partial.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="~/Content/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Slimscroll JS -->
+    <script src="~/Content/assets/js/jquery.slimscroll.min.js"></script>
+
+    <!-- Theme Settings JS -->
+    <script src="~/Content/assets/js/layout.js"></script>
+    <script src="~/Content/assets/js/theme-settings.js"></script>
+
+
+    <!-- jQuery -->
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <!--       <h4 class="card-title mb-0">Add Department Form</h4>-->
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Department Information</h4>
+                    @using (Html.BeginForm("ProcessDepartmentData", "Account", FormMethod.Post, new { id = "departmentForm" }))
+                    {
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.DepartmentName, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.DepartmentName, new { @class = "form-control", id = "Department_Name" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.DepartmentDesignation, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.DepartmentDesignation, new { @class = "form-control", id = "Department_Designation" })
+                                    </div>
+                                </div>
+                                <!-- Add other Department fields here -->
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.DepartmentLocation, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.DepartmentLocation, new { @class = "form-control", id = "Department_Location" })
+                                    </div>
+                                </div>
+                                <!-- Add other Department fields here -->
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" id="submitButton" class="btn btn-primary">Submit</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Your script tag here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    $(document).ready(function () {
+            $('#submitButton').on('click', function (event) {
+                event.preventDefault();
+                var $btn = $(this); // Reference to the button
+                if ($btn.prop('disabled')) {
+                    return; // Exit if the button is already disabled
+                }
+
+                $btn.prop('disabled', true); // Disable the button to prevent further clicks
+
+                var formData = {
+                    DepartmentName: $('#Department_Name').val(),
+                    DepartmentDesignation: $('#Department_Designation').val(),
+                    DepartmentLocation: $('#Department_Location').val()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Admin/ProcessDepartmentData',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                        console.log('Data successfully submitted:', response);
+                        alert("Department Added Successfully");
+
+                        OpenForm('/Admin/DashBoard', 'Dashboard');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error occurred:', error);
+                    },
+                    complete: function () {
+                        $btn.prop('disabled', false); // Re-enable the button once the request completes
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

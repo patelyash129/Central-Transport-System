@@ -1,0 +1,731 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3F54CB3-0F9A-4E3C-AD13-B6BBE4EB441B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>web</RootNamespace>
+    <AssemblyName>web</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Tech.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\APIpractice\Repo\bin\Debug\Tech.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Tech.Frameworks, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\APIpractice\Repo\bin\Debug\Tech.Frameworks.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CentralMasterController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\assets\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\assets\css\bootstrap.css" />
+    <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\css\ckeditor.css" />
+    <Content Include="Content\assets\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\assets\css\font-awesome.min.css" />
+    <Content Include="Content\assets\css\fullcalendar.min.css" />
+    <Content Include="Content\assets\css\line-awesome.min.css" />
+    <Content Include="Content\assets\css\material.css" />
+    <Content Include="Content\assets\css\select2.min.css" />
+    <Content Include="Content\assets\css\style.css" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\assets\fonts\la-brands-400.svg" />
+    <Content Include="Content\assets\fonts\la-regular-400.svg" />
+    <Content Include="Content\assets\fonts\la-solid-900.svg" />
+    <Content Include="Content\assets\fonts\line-awesome.svg" />
+    <Content Include="Content\assets\fonts\MaterialIcons-Regular.svg" />
+    <Content Include="Content\assets\img\attachment.png" />
+    <Content Include="Content\assets\img\boxed.png" />
+    <Content Include="Content\assets\img\close.png" />
+    <Content Include="Content\assets\img\compact.png" />
+    <Content Include="Content\assets\img\dark.png" />
+    <Content Include="Content\assets\img\dark2.png" />
+    <Content Include="Content\assets\img\detached.png" />
+    <Content Include="Content\assets\img\favicon.png" />
+    <Content Include="Content\assets\img\flags\ad.png" />
+    <Content Include="Content\assets\img\flags\ae.png" />
+    <Content Include="Content\assets\img\flags\af.png" />
+    <Content Include="Content\assets\img\flags\ag.png" />
+    <Content Include="Content\assets\img\flags\ai.png" />
+    <Content Include="Content\assets\img\flags\al.png" />
+    <Content Include="Content\assets\img\flags\am.png" />
+    <Content Include="Content\assets\img\flags\ao.png" />
+    <Content Include="Content\assets\img\flags\ar.png" />
+    <Content Include="Content\assets\img\flags\as.png" />
+    <Content Include="Content\assets\img\flags\at.png" />
+    <Content Include="Content\assets\img\flags\au.png" />
+    <Content Include="Content\assets\img\flags\aw.png" />
+    <Content Include="Content\assets\img\flags\ax.png" />
+    <Content Include="Content\assets\img\flags\az.png" />
+    <Content Include="Content\assets\img\flags\ba.png" />
+    <Content Include="Content\assets\img\flags\bb.png" />
+    <Content Include="Content\assets\img\flags\bd.png" />
+    <Content Include="Content\assets\img\flags\be.png" />
+    <Content Include="Content\assets\img\flags\bf.png" />
+    <Content Include="Content\assets\img\flags\bg.png" />
+    <Content Include="Content\assets\img\flags\bh.png" />
+    <Content Include="Content\assets\img\flags\bi.png" />
+    <Content Include="Content\assets\img\flags\bj.png" />
+    <Content Include="Content\assets\img\flags\bl.png" />
+    <Content Include="Content\assets\img\flags\bm.png" />
+    <Content Include="Content\assets\img\flags\bn.png" />
+    <Content Include="Content\assets\img\flags\bo.png" />
+    <Content Include="Content\assets\img\flags\bq.png" />
+    <Content Include="Content\assets\img\flags\br.png" />
+    <Content Include="Content\assets\img\flags\bs.png" />
+    <Content Include="Content\assets\img\flags\bt.png" />
+    <Content Include="Content\assets\img\flags\bv.png" />
+    <Content Include="Content\assets\img\flags\bw.png" />
+    <Content Include="Content\assets\img\flags\by.png" />
+    <Content Include="Content\assets\img\flags\bz.png" />
+    <Content Include="Content\assets\img\flags\ca.png" />
+    <Content Include="Content\assets\img\flags\cc.png" />
+    <Content Include="Content\assets\img\flags\cd.png" />
+    <Content Include="Content\assets\img\flags\cf.png" />
+    <Content Include="Content\assets\img\flags\cg.png" />
+    <Content Include="Content\assets\img\flags\ch.png" />
+    <Content Include="Content\assets\img\flags\ci.png" />
+    <Content Include="Content\assets\img\flags\ck.png" />
+    <Content Include="Content\assets\img\flags\cl.png" />
+    <Content Include="Content\assets\img\flags\cm.png" />
+    <Content Include="Content\assets\img\flags\cn.png" />
+    <Content Include="Content\assets\img\flags\co.png" />
+    <Content Include="Content\assets\img\flags\cr.png" />
+    <Content Include="Content\assets\img\flags\cu.png" />
+    <Content Include="Content\assets\img\flags\cv.png" />
+    <Content Include="Content\assets\img\flags\cw.png" />
+    <Content Include="Content\assets\img\flags\cx.png" />
+    <Content Include="Content\assets\img\flags\cy.png" />
+    <Content Include="Content\assets\img\flags\cz.png" />
+    <Content Include="Content\assets\img\flags\de.png" />
+    <Content Include="Content\assets\img\flags\dj.png" />
+    <Content Include="Content\assets\img\flags\dk.png" />
+    <Content Include="Content\assets\img\flags\dm.png" />
+    <Content Include="Content\assets\img\flags\do.png" />
+    <Content Include="Content\assets\img\flags\dz.png" />
+    <Content Include="Content\assets\img\flags\ec.png" />
+    <Content Include="Content\assets\img\flags\ee.png" />
+    <Content Include="Content\assets\img\flags\eg.png" />
+    <Content Include="Content\assets\img\flags\er.png" />
+    <Content Include="Content\assets\img\flags\es.png" />
+    <Content Include="Content\assets\img\flags\et.png" />
+    <Content Include="Content\assets\img\flags\fi.png" />
+    <Content Include="Content\assets\img\flags\fj.png" />
+    <Content Include="Content\assets\img\flags\fk.png" />
+    <Content Include="Content\assets\img\flags\fm.png" />
+    <Content Include="Content\assets\img\flags\fo.png" />
+    <Content Include="Content\assets\img\flags\fr.png" />
+    <Content Include="Content\assets\img\flags\ga.png" />
+    <Content Include="Content\assets\img\flags\gb.png" />
+    <Content Include="Content\assets\img\flags\gd.png" />
+    <Content Include="Content\assets\img\flags\ge.png" />
+    <Content Include="Content\assets\img\flags\gf.png" />
+    <Content Include="Content\assets\img\flags\gg.png" />
+    <Content Include="Content\assets\img\flags\gh.png" />
+    <Content Include="Content\assets\img\flags\gi.png" />
+    <Content Include="Content\assets\img\flags\gl.png" />
+    <Content Include="Content\assets\img\flags\gm.png" />
+    <Content Include="Content\assets\img\flags\gn.png" />
+    <Content Include="Content\assets\img\flags\gp.png" />
+    <Content Include="Content\assets\img\flags\gq.png" />
+    <Content Include="Content\assets\img\flags\gr.png" />
+    <Content Include="Content\assets\img\flags\gs.png" />
+    <Content Include="Content\assets\img\flags\gt.png" />
+    <Content Include="Content\assets\img\flags\gu.png" />
+    <Content Include="Content\assets\img\flags\gw.png" />
+    <Content Include="Content\assets\img\flags\gy.png" />
+    <Content Include="Content\assets\img\flags\hk.png" />
+    <Content Include="Content\assets\img\flags\hn.png" />
+    <Content Include="Content\assets\img\flags\hr.png" />
+    <Content Include="Content\assets\img\flags\ht.png" />
+    <Content Include="Content\assets\img\flags\hu.png" />
+    <Content Include="Content\assets\img\flags\id.png" />
+    <Content Include="Content\assets\img\flags\ie.png" />
+    <Content Include="Content\assets\img\flags\il.png" />
+    <Content Include="Content\assets\img\flags\im.png" />
+    <Content Include="Content\assets\img\flags\in.png" />
+    <Content Include="Content\assets\img\flags\io.png" />
+    <Content Include="Content\assets\img\flags\iq.png" />
+    <Content Include="Content\assets\img\flags\ir.png" />
+    <Content Include="Content\assets\img\flags\is.png" />
+    <Content Include="Content\assets\img\flags\it.png" />
+    <Content Include="Content\assets\img\flags\je.png" />
+    <Content Include="Content\assets\img\flags\jm.png" />
+    <Content Include="Content\assets\img\flags\jo.png" />
+    <Content Include="Content\assets\img\flags\jp.png" />
+    <Content Include="Content\assets\img\flags\ke.png" />
+    <Content Include="Content\assets\img\flags\kg.png" />
+    <Content Include="Content\assets\img\flags\kh.png" />
+    <Content Include="Content\assets\img\flags\ki.png" />
+    <Content Include="Content\assets\img\flags\km.png" />
+    <Content Include="Content\assets\img\flags\kn.png" />
+    <Content Include="Content\assets\img\flags\kp.png" />
+    <Content Include="Content\assets\img\flags\kr.png" />
+    <Content Include="Content\assets\img\flags\kw.png" />
+    <Content Include="Content\assets\img\flags\ky.png" />
+    <Content Include="Content\assets\img\flags\kz.png" />
+    <Content Include="Content\assets\img\flags\la.png" />
+    <Content Include="Content\assets\img\flags\lb.png" />
+    <Content Include="Content\assets\img\flags\lc.png" />
+    <Content Include="Content\assets\img\flags\li.png" />
+    <Content Include="Content\assets\img\flags\lk.png" />
+    <Content Include="Content\assets\img\flags\lr.png" />
+    <Content Include="Content\assets\img\flags\ls.png" />
+    <Content Include="Content\assets\img\flags\lt.png" />
+    <Content Include="Content\assets\img\flags\lu.png" />
+    <Content Include="Content\assets\img\flags\lv.png" />
+    <Content Include="Content\assets\img\flags\ly.png" />
+    <Content Include="Content\assets\img\flags\ma.png" />
+    <Content Include="Content\assets\img\flags\mc.png" />
+    <Content Include="Content\assets\img\flags\md.png" />
+    <Content Include="Content\assets\img\flags\me.png" />
+    <Content Include="Content\assets\img\flags\mg.png" />
+    <Content Include="Content\assets\img\flags\mh.png" />
+    <Content Include="Content\assets\img\flags\mk.png" />
+    <Content Include="Content\assets\img\flags\ml.png" />
+    <Content Include="Content\assets\img\flags\mm.png" />
+    <Content Include="Content\assets\img\flags\mn.png" />
+    <Content Include="Content\assets\img\flags\mo.png" />
+    <Content Include="Content\assets\img\flags\mp.png" />
+    <Content Include="Content\assets\img\flags\mq.png" />
+    <Content Include="Content\assets\img\flags\mr.png" />
+    <Content Include="Content\assets\img\flags\ms.png" />
+    <Content Include="Content\assets\img\flags\mt.png" />
+    <Content Include="Content\assets\img\flags\mu.png" />
+    <Content Include="Content\assets\img\flags\mv.png" />
+    <Content Include="Content\assets\img\flags\mw.png" />
+    <Content Include="Content\assets\img\flags\mx.png" />
+    <Content Include="Content\assets\img\flags\my.png" />
+    <Content Include="Content\assets\img\flags\mz.png" />
+    <Content Include="Content\assets\img\flags\na.png" />
+    <Content Include="Content\assets\img\flags\nc.png" />
+    <Content Include="Content\assets\img\flags\ne.png" />
+    <Content Include="Content\assets\img\flags\nf.png" />
+    <Content Include="Content\assets\img\flags\ng.png" />
+    <Content Include="Content\assets\img\flags\ni.png" />
+    <Content Include="Content\assets\img\flags\nl.png" />
+    <Content Include="Content\assets\img\flags\no.png" />
+    <Content Include="Content\assets\img\flags\np.png" />
+    <Content Include="Content\assets\img\flags\nr.png" />
+    <Content Include="Content\assets\img\flags\nu.png" />
+    <Content Include="Content\assets\img\flags\nz.png" />
+    <Content Include="Content\assets\img\flags\om.png" />
+    <Content Include="Content\assets\img\flags\pa.png" />
+    <Content Include="Content\assets\img\flags\pe.png" />
+    <Content Include="Content\assets\img\flags\pf.png" />
+    <Content Include="Content\assets\img\flags\pg.png" />
+    <Content Include="Content\assets\img\flags\ph.png" />
+    <Content Include="Content\assets\img\flags\pk.png" />
+    <Content Include="Content\assets\img\flags\pl.png" />
+    <Content Include="Content\assets\img\flags\pm.png" />
+    <Content Include="Content\assets\img\flags\pn.png" />
+    <Content Include="Content\assets\img\flags\pr.png" />
+    <Content Include="Content\assets\img\flags\ps.png" />
+    <Content Include="Content\assets\img\flags\pt.png" />
+    <Content Include="Content\assets\img\flags\pw.png" />
+    <Content Include="Content\assets\img\flags\py.png" />
+    <Content Include="Content\assets\img\flags\qa.png" />
+    <Content Include="Content\assets\img\flags\re.png" />
+    <Content Include="Content\assets\img\flags\ro.png" />
+    <Content Include="Content\assets\img\flags\rs.png" />
+    <Content Include="Content\assets\img\flags\ru.png" />
+    <Content Include="Content\assets\img\flags\rw.png" />
+    <Content Include="Content\assets\img\flags\sa.png" />
+    <Content Include="Content\assets\img\flags\sb.png" />
+    <Content Include="Content\assets\img\flags\sc.png" />
+    <Content Include="Content\assets\img\flags\sd.png" />
+    <Content Include="Content\assets\img\flags\se.png" />
+    <Content Include="Content\assets\img\flags\sg.png" />
+    <Content Include="Content\assets\img\flags\sh.png" />
+    <Content Include="Content\assets\img\flags\si.png" />
+    <Content Include="Content\assets\img\flags\sk.png" />
+    <Content Include="Content\assets\img\flags\sl.png" />
+    <Content Include="Content\assets\img\flags\sm.png" />
+    <Content Include="Content\assets\img\flags\sn.png" />
+    <Content Include="Content\assets\img\flags\so.png" />
+    <Content Include="Content\assets\img\flags\sr.png" />
+    <Content Include="Content\assets\img\flags\ss.png" />
+    <Content Include="Content\assets\img\flags\st.png" />
+    <Content Include="Content\assets\img\flags\sv.png" />
+    <Content Include="Content\assets\img\flags\sx.png" />
+    <Content Include="Content\assets\img\flags\sy.png" />
+    <Content Include="Content\assets\img\flags\sz.png" />
+    <Content Include="Content\assets\img\flags\tc.png" />
+    <Content Include="Content\assets\img\flags\td.png" />
+    <Content Include="Content\assets\img\flags\tf.png" />
+    <Content Include="Content\assets\img\flags\tg.png" />
+    <Content Include="Content\assets\img\flags\th.png" />
+    <Content Include="Content\assets\img\flags\tj.png" />
+    <Content Include="Content\assets\img\flags\tk.png" />
+    <Content Include="Content\assets\img\flags\tl.png" />
+    <Content Include="Content\assets\img\flags\tm.png" />
+    <Content Include="Content\assets\img\flags\tn.png" />
+    <Content Include="Content\assets\img\flags\to.png" />
+    <Content Include="Content\assets\img\flags\tr.png" />
+    <Content Include="Content\assets\img\flags\tt.png" />
+    <Content Include="Content\assets\img\flags\tv.png" />
+    <Content Include="Content\assets\img\flags\tw.png" />
+    <Content Include="Content\assets\img\flags\tz.png" />
+    <Content Include="Content\assets\img\flags\ua.png" />
+    <Content Include="Content\assets\img\flags\ug.png" />
+    <Content Include="Content\assets\img\flags\um.png" />
+    <Content Include="Content\assets\img\flags\us.png" />
+    <Content Include="Content\assets\img\flags\uy.png" />
+    <Content Include="Content\assets\img\flags\uz.png" />
+    <Content Include="Content\assets\img\flags\va.png" />
+    <Content Include="Content\assets\img\flags\vc.png" />
+    <Content Include="Content\assets\img\flags\ve.png" />
+    <Content Include="Content\assets\img\flags\vg.png" />
+    <Content Include="Content\assets\img\flags\vi.png" />
+    <Content Include="Content\assets\img\flags\vn.png" />
+    <Content Include="Content\assets\img\flags\vu.png" />
+    <Content Include="Content\assets\img\flags\wf.png" />
+    <Content Include="Content\assets\img\flags\ws.png" />
+    <Content Include="Content\assets\img\flags\ye.png" />
+    <Content Include="Content\assets\img\flags\yt.png" />
+    <Content Include="Content\assets\img\flags\za.png" />
+    <Content Include="Content\assets\img\flags\zm.png" />
+    <Content Include="Content\assets\img\flags\zw.png" />
+    <Content Include="Content\assets\img\horizontal.png" />
+    <Content Include="Content\assets\img\img-01.jpg" />
+    <Content Include="Content\assets\img\logo.png" />
+    <Content Include="Content\assets\img\logo.svg" />
+    <Content Include="Content\assets\img\logo2.png" />
+    <Content Include="Content\assets\img\logo3.png" />
+    <Content Include="Content\assets\img\placeholder.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-01.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-02.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-03.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-04.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-05.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-06.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-07.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-08.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-09.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-10.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-11.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-12.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-13.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-14.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-15.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-16.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-17.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-18.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-19.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-20.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-21.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-22.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-23.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-24.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-25.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-26.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-27.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-28.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-29.jpg" />
+    <Content Include="Content\assets\img\profiles\avatar-30.jpg" />
+    <Content Include="Content\assets\img\small-hover.png" />
+    <Content Include="Content\assets\img\two-col.png" />
+    <Content Include="Content\assets\img\user.jpg" />
+    <Content Include="Content\assets\img\vertical.png" />
+    <Content Include="Content\assets\img\video-call.jpg" />
+    <Content Include="Content\assets\js\app.js" />
+    <Content Include="Content\assets\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\assets\js\bootstrap.bundle.js" />
+    <Content Include="Content\assets\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\assets\js\chart.js" />
+    <Content Include="Content\assets\js\Chart.min.js" />
+    <Content Include="Content\assets\js\ckeditor.js" />
+    <Content Include="Content\assets\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\assets\js\dropfiles.js" />
+    <Content Include="Content\assets\js\fullcalendar.min.js" />
+    <Content Include="Content\assets\js\greedynav.js" />
+    <Content Include="Content\assets\js\jquery-3.6.0.min.js" />
+    <Content Include="Content\assets\js\jquery-ui.min.js" />
+    <Content Include="Content\assets\js\jquery.dataTables.min.js" />
+    <Content Include="Content\assets\js\jquery.fullcalendar.js" />
+    <Content Include="Content\assets\js\jquery.maskedinput.min.js" />
+    <Content Include="Content\assets\js\jquery.slimscroll.js" />
+    <Content Include="Content\assets\js\jquery.slimscroll.min.js" />
+    <Content Include="Content\assets\js\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\assets\js\layout.js" />
+    <Content Include="Content\assets\js\line-chart.js" />
+    <Content Include="Content\assets\js\mask.js" />
+    <Content Include="Content\assets\js\moment.min.js" />
+    <Content Include="Content\assets\js\multiselect.min.js" />
+    <Content Include="Content\assets\js\select2.min.js" />
+    <Content Include="Content\assets\js\task.js" />
+    <Content Include="Content\assets\js\theme-settings.js" />
+    <Content Include="Content\assets\plugins\bootstrap-tagsinput\bootstrap-tagsinput.css" />
+    <Content Include="Content\assets\plugins\bootstrap-tagsinput\bootstrap-tagsinput.js" />
+    <Content Include="Content\assets\plugins\bootstrap-tagsinput\bootstrap-tagsinput.min.js" />
+    <Content Include="Content\assets\plugins\fontawesome\css\all.css" />
+    <Content Include="Content\assets\plugins\fontawesome\css\all.min.css" />
+    <Content Include="Content\assets\plugins\fontawesome\css\fontawesome.css" />
+    <Content Include="Content\assets\plugins\fontawesome\css\fontawesome.min.css" />
+    <Content Include="Content\assets\plugins\fontawesome\css\solid.css" />
+    <Content Include="Content\assets\plugins\fontawesome\css\solid.min.css" />
+    <Content Include="Content\assets\plugins\fontawesome\js\all.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\all.min.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\brands.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\brands.min.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\conflict-detection.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\conflict-detection.min.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\fontawesome.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\fontawesome.min.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\regular.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\regular.min.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\solid.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\solid.min.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\v4-shims.js" />
+    <Content Include="Content\assets\plugins\fontawesome\js\v4-shims.min.js" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\assets\plugins\morris\morris.css" />
+    <Content Include="Content\assets\plugins\morris\morris.js" />
+    <Content Include="Content\assets\plugins\morris\morris.min.js" />
+    <Content Include="Content\assets\plugins\raphael\raphael.min.js" />
+    <Content Include="Content\assets\plugins\sticky-kit-master\dist\sticky-kit.js" />
+    <Content Include="Content\assets\plugins\sticky-kit-master\dist\sticky-kit.min.js" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.rtl.css" />
+    <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\assets\css\bootstrap.css.map" />
+    <Content Include="Content\assets\css\bootstrap.min.css.map" />
+    <Content Include="Content\assets\css\style.css.map" />
+    <Content Include="Content\assets\fonts\CircularStd-Black.woff" />
+    <Content Include="Content\assets\fonts\CircularStd-BlackItalic.woff" />
+    <Content Include="Content\assets\fonts\CircularStd-Bold.woff" />
+    <Content Include="Content\assets\fonts\CircularStd-BoldItalic.woff" />
+    <Content Include="Content\assets\fonts\CircularStd-Book.woff" />
+    <Content Include="Content\assets\fonts\CircularStd-BookItalic.woff" />
+    <Content Include="Content\assets\fonts\CircularStd-Medium.woff" />
+    <Content Include="Content\assets\fonts\CircularStd-MediumItalic.woff" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\assets\fonts\FontAwesome.otf" />
+    <Content Include="Content\assets\fonts\fonts.zip" />
+    <Content Include="Content\assets\fonts\la-brands-400.eot" />
+    <Content Include="Content\assets\fonts\la-brands-400.woff" />
+    <Content Include="Content\assets\fonts\la-brands-400.woff2" />
+    <Content Include="Content\assets\fonts\la-regular-400.eot" />
+    <Content Include="Content\assets\fonts\la-regular-400.woff" />
+    <Content Include="Content\assets\fonts\la-regular-400.woff2" />
+    <Content Include="Content\assets\fonts\la-solid-900.eot" />
+    <Content Include="Content\assets\fonts\la-solid-900.woff" />
+    <Content Include="Content\assets\fonts\la-solid-900.woff2" />
+    <Content Include="Content\assets\fonts\line-awesome.eot" />
+    <Content Include="Content\assets\fonts\line-awesome.woff" />
+    <Content Include="Content\assets\fonts\line-awesome.woff2" />
+    <Content Include="Content\assets\fonts\MaterialIcons-Regular.eot" />
+    <Content Include="Content\assets\fonts\MaterialIcons-Regular.woff" />
+    <Content Include="Content\assets\fonts\MaterialIcons-Regular.woff2" />
+    <Content Include="Content\assets\img\Thumbs.db" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\assets\plugins\fontawesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\assets\scss\base\base.scss" />
+    <Content Include="Content\assets\scss\base\colors.scss" />
+    <Content Include="Content\assets\scss\base\grid.scss" />
+    <Content Include="Content\assets\scss\base\reset.scss" />
+    <Content Include="Content\assets\scss\base\typography.scss" />
+    <Content Include="Content\assets\scss\components\button.scss" />
+    <Content Include="Content\assets\scss\layout\avatar.scss" />
+    <Content Include="Content\assets\scss\layout\bootstrap-classes.scss" />
+    <Content Include="Content\assets\scss\layout\breadcrumb.scss" />
+    <Content Include="Content\assets\scss\layout\content.scss" />
+    <Content Include="Content\assets\scss\layout\footer.scss" />
+    <Content Include="Content\assets\scss\layout\header.scss" />
+    <Content Include="Content\assets\scss\layout\nav-tab.scss" />
+    <Content Include="Content\assets\scss\layout\popup.scss" />
+    <Content Include="Content\assets\scss\layout\select2.scss" />
+    <Content Include="Content\assets\scss\layout\sidebar.scss" />
+    <Content Include="Content\assets\scss\layout\table.scss" />
+    <Content Include="Content\assets\scss\layout\theme-settings.scss" />
+    <Content Include="Content\assets\scss\main.scss" />
+    <Content Include="Content\assets\scss\pages\activites.scss" />
+    <Content Include="Content\assets\scss\pages\attendance.scss" />
+    <Content Include="Content\assets\scss\pages\calendar.scss" />
+    <Content Include="Content\assets\scss\pages\call.scss" />
+    <Content Include="Content\assets\scss\pages\chat.scss" />
+    <Content Include="Content\assets\scss\pages\components.scss" />
+    <Content Include="Content\assets\scss\pages\contact.scss" />
+    <Content Include="Content\assets\scss\pages\dashboard.scss" />
+    <Content Include="Content\assets\scss\pages\email.scss" />
+    <Content Include="Content\assets\scss\pages\employee.scss" />
+    <Content Include="Content\assets\scss\pages\error.scss" />
+    <Content Include="Content\assets\scss\pages\faq.scss" />
+    <Content Include="Content\assets\scss\pages\filemanager.scss" />
+    <Content Include="Content\assets\scss\pages\knowledge.scss" />
+    <Content Include="Content\assets\scss\pages\loader.scss" />
+    <Content Include="Content\assets\scss\pages\login.scss" />
+    <Content Include="Content\assets\scss\pages\notification.scss" />
+    <Content Include="Content\assets\scss\pages\page.scss" />
+    <Content Include="Content\assets\scss\pages\payroll.scss" />
+    <Content Include="Content\assets\scss\pages\profile.scss" />
+    <Content Include="Content\assets\scss\pages\project.scss" />
+    <Content Include="Content\assets\scss\pages\subscriptions.scss" />
+    <Content Include="Content\assets\scss\pages\task.scss" />
+    <Content Include="Content\assets\scss\utils\mixins.scss" />
+    <Content Include="Content\assets\scss\utils\variables.scss" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.css.map" />
+    <Content Include="Content\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.rtl.css.map" />
+    <Content Include="Content\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\assets\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\assets\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\Layout.js" />
+    <Content Include="Scripts\Partial.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\CentralMaster\_holidays.cshtml" />
+    <Content Include="Views\CentralMaster\_Partial.cshtml" />
+    <Content Include="Views\Account\_Login.cshtml" />
+    <Content Include="Views\Account\_Signup.cshtml" />
+    <Content Include="Views\Employee\_Dashboard.cshtml" />
+    <Content Include="Views\Employee\_status.cshtml" />
+    <Content Include="Views\Admin\_CheckAvailibility.cshtml" />
+    <Content Include="Views\Admin\_Reject.cshtml" />
+    <Content Include="Views\Employee\_TruckRequest.cshtml" />
+    <Content Include="Views\Admin\_AddEmployee.cshtml" />
+    <Content Include="Views\Admin\AddDepartment.cshtml" />
+    <Content Include="Views\Admin\_AdminDash.cshtml" />
+    <Content Include="Views\Admin\_AddVehicle.cshtml" />
+    <Content Include="Views\Admin\_AllRequest.cshtml" />
+    <Content Include="Views\Employee\_Carrequest.cshtml" />
+    <Content Include="Views\Admin\_History.cshtml" />
+    <Content Include="Views\Employee\_Profile.cshtml" />
+    <Content Include="Views\Employee\_getinfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Views\Admin\_TruckRequest.cshtml" />
+    <Content Include="Views\Employee\_Cancellable.cshtml" />
+    <Content Include="Views\Admin\_getinfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models2\Models2.csproj">
+      <Project>{4fb25a13-8f57-4a05-be2c-2ba801bc14f7}</Project>
+      <Name>Models2</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repo\Repo.csproj">
+      <Project>{6dd3d342-8600-467e-9c92-a1f0984c7432}</Project>
+      <Name>Repo</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64150</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64150/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

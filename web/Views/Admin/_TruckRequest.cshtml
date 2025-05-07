@@ -1,0 +1,171 @@
+﻿
+@model List<Models2.DB.TruckRequest>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/material.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Chart CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/morris/morris.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- Custom JS -->
+    <script src="~/Content/assets/js/app.js"></script>
+    <script src="~/Scripts/Partial.js"></script>
+
+    <!-- jQuery -->
+    <script src="~/Content/assets/js/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Employee ID</th>
+                                <th>Venue</th>
+                                <th>Phone Number</th>
+                                <th>Purpose</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Request For</th>
+                                <th>Res ID</th>
+                                <th>Allot ID</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var truckRequest in Model)
+                            {
+                                <tr>
+                                    <td>@truckRequest.id</td>
+                                    <td>@truckRequest.EmployeeId</td>
+                                    <td>@truckRequest.Venue</td>
+                                    <td>@truckRequest.PhoneNumber</td>
+                                    <td>@truckRequest.Purpose</td>
+                                    <td>@truckRequest.Date</td>
+                                    <td>@truckRequest.Time</td>
+                                    <td>@truckRequest.RequestFor</td>
+                                    <td>@(truckRequest.Res_Id ?? 0)</td>
+                                    <td>@(truckRequest.AllotId ?? 0)</td>
+                                    <td>@truckRequest.Status</td>
+                                    <td>
+                                        <button class="allot-btn" data-Id="@truckRequest.id" data-Date="@truckRequest.Date" data-Stime="@truckRequest.Time" data-Destination="@truckRequest.Venue">Check Availability</button>
+                                        <button id="Reject" data-Id="@truckRequest.id">Reject</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+
+$(document).ready(function () {
+
+   // $('.allot-btn').click(function () {
+        $('.allot-btn').on('click', function (event) {
+            event.preventDefault();
+            var $btn = $(this); // Reference to the button
+            if ($btn.prop('disabled')) {
+                return; // Exit if the button is already disabled
+            }
+
+            $btn.prop('disabled', true); // Disable the button to prevent further clicks
+            var $thisButton = $(this);  // Cache this button
+
+        var form = {
+            R_Id: $thisButton.data('id'), // Changed from 'Id' to 'id'
+            date: $thisButton.data('date'), // Changed from 'Date' to 'date'
+            Time: $thisButton.data('stime'), // Changed from 'Stime' to 'stime'
+            Venue: $thisButton.data('destination') // Changed from 'Destination' to 'destination'
+        };
+        console.log(form);
+
+        // Now you can use the form object in your AJAX request
+        // ...
+
+        $.ajax({
+            type: 'POST',
+            url: '/Admin/Truckrequest', // Assuming '/Admin' is the correct path
+            data: { Data: form },
+            success: function (response) {
+               
+                OpenFormGet('/Admin/Check', 'Available Vehicles'); // Update UI or redirect
+
+            },
+            error: function (xhr, status, error) {
+                alert('Error: ' + error);
+                $thisButton.prop('disabled', false);  // Re-enable the button if there's an error
+            }
+        });
+    });
+
+        $('#Reject').on('click', function() {
+            var $thisButton = $(this); // Define $thisButton as the button that was clicked
+
+        var form = {
+            Allot_id:$thisButton.data('id'), // Changed from 'Id' to 'id'
+            Destination: "Truck"
+
+
+        };
+          $.ajax({
+        type: 'POST',
+        url: '@Url.Action("Rejectrequest", "Admin")',
+        data: { data: form },
+        success: function(response) {
+            alert('Vehicle  rejection!');
+            OpenFormGet('/Admin/Reject', 'rejection form'); // Update UI or redirect
+
+        },
+        error: function(xhr, status, error) {
+            alert('Error: ' + error);
+            $thisButton.prop('disabled', false);  // Re-enable the button if there's an error
+        }
+    });
+});
+    
+});
+
+    </script>
+
+
+
+</body>
+</html>

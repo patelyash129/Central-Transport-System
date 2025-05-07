@@ -1,0 +1,117 @@
+﻿
+@model Models2.Employee.Employee
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Request Form - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/material.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- Custom JS -->
+    <script src="~/Content/assets/js/app.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="~/Content/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Partial.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="card mb-0 mt-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        <div class="profile-img-wrap">
+                            <div class="profile-img">
+                                <a href="#"><img alt="" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTicdURziHM3s2o62p0EP8xkrfaB5JzK3KVLcB8ucR0ZA&s"></a>
+                            </div>
+                        </div>
+                        <div class="profile-basic">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="profile-info-left">
+                                        <h3 class="user-name m-t-0 mb-0">@Model.Name</h3>
+                                        <h6 class="text-muted">UI/UX Design Team</h6>
+                                        <small class="text-muted">@Model.Department.DepartmentName</small>
+
+                                        <div class="staff-id">Employee ID : @Model.Id</div>
+                                        <div class="staff-id">Designation : @Model.Department.DepartmentDesignation</div>
+
+                                        <div class="small doj text-muted">Date of Join : 1st Jan 2013</div>
+                                        <div class="staff-msg"><a class="btn btn-custom" href="chat.html">Send Message</a></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <ul class="personal-info">
+                                        <li>
+                                            <div class="title">Phone:</div>
+                                            <div class="text"><a href="">@Model.Number</a></div>
+                                        </li>
+                                        <li>
+                                            <div class="title">Email:</div>
+                                            <div class="text"><a href="">@Model.Email</a></div>
+                                        </li>
+                                        <li>
+                                            <div class="title">Age:</div>
+                                            <div class="text">@Model.Age</div>
+                                        </li>
+                                        <li>
+                                            <div class="title">Address:</div>
+                                            <div class="text">@Model.Address</div>
+                                        </li>
+                                        <li>
+                                            <div class="title">Gender:</div>
+                                            <div class="text">Male</div>
+                                        </li>
+                                        <li>
+                                            <div class="title">Reports to:</div>
+                                            <div class="text">
+                                                <div class="avatar-box">
+                                                    <div class="avatar avatar-xs">
+                                                        <img src="assets/img/profiles/avatar-16.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                                <a href="profile.html">
+                                                    Jeffery Lalor
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pro-edit"><a data-bs-target="#profile_info" data-bs-toggle="modal" class="edit-icon" href="#"><i class="fa fa-pencil"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+﻿
+@model Models2.Employee.Employee
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/material.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Chart CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/morris/morris.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- Custom JS -->
+    <script src="~/Content/assets/js/app.js"></script>
+    <script src="~/Scripts/Partial.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="~/Content/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Slimscroll JS -->
+    <script src="~/Content/assets/js/jquery.slimscroll.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="~/Content/assets/plugins/morris/morris.min.js"></script>
+    <script src="~/Content/assets/plugins/raphael/raphael.min.js"></script>
+    <script src="~/Content/assets/js/chart.js"></script>
+    <script src="~/Content/assets/js/greedynav.js"></script>
+
+    <!-- Theme Settings JS -->
+    <script src="~/Content/assets/js/layout.js"></script>
+    <script src="~/Content/assets/js/theme-settings.js"></script>
+
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <!--     <h4 class="card-title mb-0">Add Employee Form</h4>-->
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Employee Information</h4>
+                    @using (Html.BeginForm("ProcessFormData", "Admin", FormMethod.Post, new { id = "employeeForm" }))
+                    {
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Name, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "Employee_Name" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Address, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", id = "Employee_Address" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Age, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Age, new { @class = "form-control", id = "Employee_Age" })
+                                    </div>
+                                </div>
+
+                                <!-- Add other Employee fields here -->
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Email, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "Employee_Email" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Salary, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", id = "Employee_Salary" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Number, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Number, new { @class = "form-control", id = "Employee_Number" })
+                                    </div>
+                                </div>
+                                <!-- Add other Employee fields here -->
+                            </div>
+                        </div>
+                        <h4 class="card-title">Department Information</h4>
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Department.DepartmentName, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Department.DepartmentName, new { @class = "form-control", id = "Department_Name" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Department.DepartmentDesignation, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Department.DepartmentDesignation, new { @class = "form-control", id = "Department_Designation" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.Department.DepartmentLocation, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.Department.DepartmentLocation, new { @class = "form-control", id = "Department_Location" })
+                                    </div>
+                                </div>
+                                <!-- Add other Department fields here -->
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" id="submitButton" class="btn btn-primary">Submit</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Your script tag here -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var isSubmitting = false;  // Flag to track if a request is currently being processed
+
+            $('#submitButton').on('click', function (event) {
+                event.preventDefault();
+                var $btn = $(this); // Reference to the button
+                if ($btn.prop('disabled')) {
+                    return; // Exit if the button is already disabled
+                }
+
+                $btn.prop('disabled', true); // Disable the button to prevent further clicks
+
+                var formData = {
+                    Name: $('#Employee_Name').val(),
+                    Address: $('#Employee_Address').val(),
+                    Age: $('#Employee_Age').val(),
+                    Email: $('#Employee_Email').val(),
+                    Salary: $('#Employee_Salary').val(),
+                    Number: $('#Employee_Number').val(),
+                    Department: {
+                        DepartmentName: $('#Department_Name').val(),
+                        DepartmentDesignation: $('#Department_Designation').val(),
+                        DepartmentLocation: $('#Department_Location').val()
+                    }
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Admin/ProcessFormData',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                        console.log('Data successfully submitted:', response);
+                        alert("Employee Added Successfully");
+
+                        OpenForm('Admin/DashBoard', 'Dashboard');  // Correct the spelling of 'Dashboard'
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error occurred:', error);
+                    },
+                    complete: function () {
+                        isSubmitting = false;  // Reset the flag
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

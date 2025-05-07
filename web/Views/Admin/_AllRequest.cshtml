@@ -1,0 +1,181 @@
+﻿@model List<Models2.DB.Request>
+    <html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/material.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Chart CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/morris/morris.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- Custom JS -->
+    <script src="~/Content/assets/js/app.js"></script>
+    <script src="~/Scripts/Partial.js"></script>
+
+    <!-- jQuery -->
+    <script src="~/Content/assets/js/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>SingleOrReturn</th>
+                                <th>Destination</th>
+                                <th>Date</th>
+                                <th>Destination City</th>
+                                <th>Destination State</th>
+                                <th>Number of Days</th>
+                                <th>Source</th>
+                                <th>Source City</th>
+                                <th>Source State</th>
+                                <th>Purpose</th>
+                                <th>E_Id</th>
+                                <th>Allot_Id</th>
+                                <th>Res_Id</th>
+                                <th>StartTime</th>
+                                <th>EndTime</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model)
+                            {
+                                <tr>
+                                    <td>@x.Id</td>
+                                    <td>@x.SingleOrReturn</td>
+                                    <td>@x.Destination</td>
+                                    <td>@x.Date</td>
+                                    <td>@x.DestinationCity</td>
+                                    <td>@x.DestinationState</td>
+                                    <td>@x.NumberOfDays</td>
+                                    <td>@x.Source</td>
+                                    <td>@x.SourceCity</td>
+                                    <td>@x.SourceState</td>
+                                    <td>@x.Purpose</td>
+                                    <td>@x.E_Id</td>
+                                    <td>@x.Allot_Id</td>
+                                    <td>@x.Res_Id</td>
+                                    <td>@x.StartTime</td>
+                                    <td>@x.EndTime</td>
+                                    <td>@x.Status</td>
+                                    <td>
+                                        <button id="c" class="allot-btn" data-vid="@x.Id" data-date="@x.Date" data-destination="@x.Destination" data-source="@x.Source" data-start-time="@x.StartTime" data-end-time="@x.EndTime">Check Availability</button>
+                                        <button id="Reject" data-vid="@x.Id" data-date="@x.Date" data-destination="@x.Destination" data-source="@x.Source" data-start-time="@x.StartTime" data-end-time="@x.EndTime">Reject</button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+  $(document).ready(function () {
+    var isRequestPending = false;  // Variable to track whether a request is pending
+
+    $('.allot-btn').click(function() {
+        if (isRequestPending) return;  // Prevent further actions if a request is already pending
+        isRequestPending = true;
+
+        var $thisButton = $(this);  // Cache this button
+        $thisButton.prop('disabled', true);  // Disable the button immediately
+
+        var form = {
+            Allot_id: $thisButton.data('vid'),
+            Date: $thisButton.data('date'),
+            Destination: $thisButton.data('destination'),
+            Source: $thisButton.data('source'),
+            D_time: $thisButton.data('end-time'),
+            S_time: $thisButton.data('start-time')
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("request", "Admin")',
+            data: { data: form },
+            success: function(response) {
+                OpenFormGet('/Admin/Check', 'Available vehicles'); // Update UI or redirect
+
+            },
+            error: function(xhr, status, error) {
+                alert('Error: ' + error);
+                $thisButton.prop('disabled', false);  // Re-enable the button if there's an error
+            },
+            complete: function() {
+                isRequestPending = false;  // Reset the request flag
+            }
+        });
+    });
+
+    $('#Reject').on('click', function() {
+        var $thisButton = $(this);  // Cache this button
+        $thisButton.prop('disabled', true);  // Disable the button immediately
+
+        var form = {
+            Allot_id: $thisButton.data('vid'),
+            Date: $thisButton.data('date'),
+            Destination: $thisButton.data('destination'),
+            Source: $thisButton.data('source'),
+            D_time: $thisButton.data('end-time'),
+            S_time: $thisButton.data('start-time')
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Rejectrequest", "Admin")',
+            data: { data: form },
+            success: function(response) {
+                alert('Vehicle allotment rejected!');
+                OpenFormGet('/Admin/Reject', 'Rejection'); // Update UI or redirect
+
+            },
+            error: function(xhr, status, error) {
+                alert('Error: ' + error);
+                $thisButton.prop('disabled', false);  // Re-enable the button if there's an error
+            }
+        });
+    });
+});
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,158 @@
+﻿@model Models2.User.Loginmodel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/material.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Chart CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/morris/morris.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- Custom JS -->
+    
+    <!-- Bootstrap Core JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/assets/js/app.js"></script>
+    <script src="~/Scripts/Partial.js"></script>
+    <script src="~/Content/assets/js/layout.js"></script>
+    <script src="~/Content/assets/js/theme-settings.js"></script>
+
+
+
+    <!-- jQuery -->
+</head>
+<body class="account-page">
+    <div class="main-wrapper">
+        <div class="account-content">
+            <div class="container">
+                <!-- Account Logo -->
+                <!-- Account Box -->
+                <div class="account-box">
+                    <div class="account-wrapper">
+                       <!--<h3 class="account-title">Login</h3>-->
+                        <p class="account-subtitle">Access to our dashboard</p>
+                        <!-- Account Form -->
+                        @using (Html.BeginForm("LoginData", "Account", FormMethod.Post, new { id = "loginForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "Email" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                                    </div>
+                                    <div class="col-auto">
+                                        <a class="text-muted" href="forgot-password.html">Forgot password?</a>
+                                    </div>
+                                </div>
+                                <div class="position-relative">
+                                    <span class="fa fa-eye-slash" id="toggle-password"></span>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "Password" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary account-btn" type="submit">Login</button>
+                            </div>
+                            <div class="account-footer">
+                                <p>Don't have an account yet? <a href="#" id="Signup">Register</a></p>
+                            </div>
+                        }
+                        <!-- /Account Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Your other script includes -->
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').off('submit').on('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Get the form data
+                var formData = {
+                    z: $('#Email').val(), // 'Email' corresponds to the property name in the Login model
+                    y: $('#Password').val() // 'Password' corresponds to the property name in the Login model
+                };
+
+                // Send an AJAX request to the server
+                $.ajax({
+                    type: 'POST',
+                    url: '/Account/LoginData',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                       window.location.href = "@Url.Action("Index", "Home")"; // Redirect
+
+                        console.log('Data successfully submitted:', response);
+                        // Optionally, you can update the UI here
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error occurred:', error);
+                        var message = "Login failed. Please try again.";
+                        if (xhr.status === 0) {
+                            message = "Check your network connection.";
+                        } else if (xhr.status === 404) {
+                            message = "Requested resource not found. [404]";
+                        } else if (xhr.status === 500) {
+                            message = "wrong email or password";
+                        } else if (error === "parsererror") {
+                            message = "Requested JSON parse failed.";
+                        } else if (error === "timeout") {
+                            message = "Time out error.";
+                        } else if (error === "abort") {
+                            message = "Ajax request aborted.";
+                        } else {
+                            message += "\n" + xhr.responseText;
+                        }
+                        alert(message);
+                    }
+
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

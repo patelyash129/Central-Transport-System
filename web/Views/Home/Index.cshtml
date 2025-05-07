@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/Scripts/Partial.js"></script>
+
+</head>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6" style="margin-top:2%">
+                <h3 id="h1Title" class="m-0"></h3>
+
+            </div>
+            <nav aria-label="breadcrumb" style="margin-top:-24px">
+                <ol class="breadcrumb" style="float:right">
+                    <li class="breadcrumb-item"><a id="home_page" href="#">Dashboard</a></li>
+                    <li id="1iTitle" class="breadcrumb-item active" aria-current="page"></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container-fulid">
+    <div id="dynamicContainer">
+
+    </div>
+
+</div>
+
+
+@if (User.Identity.IsAuthenticated && User.Identity.Name == "Admin123@gmail.com")
+{
+    <script>
+        $(document).ready(function () {
+            OpenForm("/Admin/DashBoard", "Admin Dashboard");
+            $("#home_page").click(function (event) {
+                event.preventDefault();  // Prevent the default anchor click behavior
+                OpenForm("/Admin/DashBoard", "Admin Dashboard");
+            });
+        });
+    </script>
+}
+else
+{
+    <script>
+        $(document).ready(function () {
+            OpenForm("/Employee/Dashboard", "Employee Dashboard");
+
+            $("#home_page").click(function (event) {
+                event.preventDefault();
+                OpenForm("/Employee/Dashboard", "Employee Dashboard");
+            });
+        });
+    </script>
+}
+

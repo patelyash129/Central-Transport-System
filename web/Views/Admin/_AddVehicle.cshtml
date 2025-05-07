@@ -1,0 +1,121 @@
+﻿@model Models2.DB.Vehicle
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Add Vehicle - Vehicle Management System</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JS -->
+    <script src="~/Content/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Content/assets/js/app.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                <!--    <h4 class="card-title mb-0">Add Vehicle Form</h4> -->
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("ProcessVehicleData", "Vehicle", FormMethod.Post, new { id = "vehicleForm" }))
+                    {
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.V_Name, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.V_Name, new { @class = "form-control", id = "V_Name" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.V_type, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.V_type, new { @class = "form-control", id = "V_type" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.V_number, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.V_number, new { @class = "form-control", id = "V_number" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    @Html.LabelFor(m => m.V_color, new { @class = "col-lg-3 col-form-label" })
+                                    <div class="col-lg-9">
+                                        @Html.TextBoxFor(m => m.V_color, new { @class = "form-control", id = "V_color" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <button type="button" id="submitButton" class="btn btn-primary">Submit</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+                $('#submitButton').on('click', function (event) {
+                    event.preventDefault();
+                    var $btn = $(this); // Reference to the button
+                    if ($btn.prop('disabled')) {
+                        return; // Exit if the button is already disabled
+                    }
+
+                    $btn.prop('disabled', true); // Disable the button to prevent further clicks
+
+                var formData = {
+                    V_Name: $('#V_Name').val(),
+                    V_type: $('#V_type').val(),
+                    V_number: $('#V_number').val(),
+                    V_color: $('#V_color').val()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/Admin/ProcessVehicleData',
+                    contentType: 'application/json',
+                    data: JSON.stringify(formData),
+                    success: function (response) {
+                        console.log('Data successfully submitted:', response);
+                        alert("Vehicle Added Successfully");
+                        OpenForm('Admin/DashBoard', 'Dashbboard')
+
+                        // Optionally, you can update the UI here
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error occurred:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+

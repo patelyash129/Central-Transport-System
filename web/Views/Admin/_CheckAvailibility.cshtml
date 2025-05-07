@@ -1,0 +1,122 @@
+﻿@model List<Models2.DB.Vehicle>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamguys - Bootstrap Admin Template">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard - HRMS template</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/assets/img/favicon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/assets/css/material.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/font-awesome.min.css">
+
+    <!-- Lineawesome CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/line-awesome.min.css">
+
+    <!-- Chart CSS -->
+    <link rel="stylesheet" href="~/Content/assets/plugins/morris/morris.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/style.css">
+
+    <!-- Custom JS -->
+    <script src="~/Content/assets/js/app.js"></script>
+    <script src="~/Scripts/Partial.js"></script>
+
+    <!-- jQuery -->
+    <script src="~/Content/assets/js/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <div class="content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped custom-table mb-0 datatable">
+                        <thead>
+                            <tr>
+                                <th>Car ID</th>
+                                <th>car name</th>
+                                <th>Car type</th>
+                                <th>car number</th>
+                                <th>Car color</th>
+                                <th class="text-end">Actions</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach (var x in Model)
+                            {
+                                <tr>
+                                    <td>@x.V_Id</td>
+                                    <td>@x.V_Name</td>
+                                    <td>@x.V_type</td>
+                                    <td>@x.V_number</td>
+                                    <td>@x.V_color</td>
+                                    <td><button type="button" class="allot-btn" data-vid="@x.V_Id">Allot</button></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.allot-btn').on('click', function (event) {
+            event.preventDefault();
+            var $btn = $(this); // Reference to the button
+            if ($btn.prop('disabled')) {
+                return; // Exit if the button is already disabled
+            }
+
+            $btn.prop('disabled', true); // Disable the button to prevent further clicks
+
+        var vehicleId = $(this).data('vid');
+                   // Fetching vehicle ID from data attribute
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("Allot", "Admin")', // Correctly resolve the URL
+            data: { id: vehicleId },
+            success: function(response) {
+                alert('Vehicle allotted successfully!');
+
+                // Optionally disable the button to prevent re-submission
+                $(this).prop('disabled', true);
+                OpenFormGet('/Admin/DashBoard', 'Dashboard'); // Update UI or redirect
+
+            },
+            error: function(xhr, status, error) {
+                alert('Error: ' + error);
+            }
+        });
+    });
+});
+    </script>
+
+
+
+</body>
+</html>
+
